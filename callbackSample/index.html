@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Callback Example</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+
+  <body>
+    <div id="displayArea"></div>
+    <script>
+      //a function that returns title
+      const displayTitle = () => {
+        return `Have you ever cooked sushi?   Today, we're going to explain the easiest way to make authentic sushi!`;
+      };
+
+      //a function that returns image and description data
+      //BUT, it takes 3 secs to finish it
+      //it's like an API
+      const getData = () => {
+        const sushiObj = {
+          img: "img/sushi.jpg",
+          description:
+            "Sushi is a Japanese dish of prepared vinegared rice, usually with some sugar and salt, accompanying a variety of ingredients, such as seafood, vegetables, and occasionally tropical fruits. Styles of sushi and its presentation vary widely, but the one key ingredient is sushi rice, also referred to as shari, or sumeshi."
+        };
+
+        setTimeout(() => {
+          return sushiObj;
+        }, 3000);
+
+        // return sushiObj;
+      };
+
+      const showStatus = () => {
+        return "Processing is complete!";
+      };
+
+      //display title, photo, and description on browser
+      //this function gets data from callback function
+      //it's like a client side
+      const displayData = callback => {
+        //get an element that displays data
+        const area = document.getElementById("displayArea");
+
+        //create a title element and show it on browser
+        const title = document.createElement("div");
+        title.id = "displayTitle";
+        title.textContent = displayTitle();
+        area.appendChild(title);
+
+        //create a photo element and show it on browser
+        //BUT, it takes 3 secs to get the photo data
+        const img = document.createElement("img");
+        img.id = "displayPhoto";
+        img.src = callback().img; //<===get photo data here
+        img.alt = "sushi";
+        area.appendChild(img);
+
+        // create a description element and show it on browser
+        //BUT, it takes 3 secs to get the description data
+        const description = document.createElement("div");
+        description.id = "displayData";
+        description.textContent = callback().description; //<===get description data here
+        area.appendChild(description);
+
+        // create a status element and show it on browser
+        const status = document.createElement("div");
+        status.id = "displayStatus";
+        status.textContent = showStatus(); //<===it won't display on the browser
+        area.appendChild(status);
+      };
+
+      //execute from here
+      displayData(getData);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#displayArea {
+  width: 980px;
+  margin: 0 auto;
+}
+
+#displayTitle {
+  font-size: 2.5em;
+  margin: 1em 0;
+  text-align: center;
+}
+
+#displayPhoto {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+#displayData {
+  font-size: 1.5em;
+  margin: 2em 0;
+}

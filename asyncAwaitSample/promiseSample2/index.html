@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Promise Example</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+
+  <body>
+    <div id="displayArea"></div>
+    <script>
+      //return title
+      const displayTitle = () => {
+        return `Have you ever cooked sushi?   Today, we're going to explain the easiest way to make authentic sushi!`;
+      };
+
+      //get data
+      //BUT, it takes 30 sec to get data of the photo and description like API
+      const getData = () => {
+        const sushiObj = {
+          img: "img/sushi.jpg",
+          description:
+            "Sushi is a Japanese dish of prepared vinegared rice, usually with some sugar and salt, accompanying a variety of ingredients, such as seafood, vegetables, and occasionally tropical fruits. Styles of sushi and its presentation vary widely, but the one key ingredient is sushi rice, also referred to as shari, or sumeshi."
+        };
+
+        // return sushiObj;
+
+        setTimeout(() => {
+          return sushiObj;
+        }, 3000);
+      };
+
+      //get data from callback function
+      //and just return data
+      //like client side
+      const displayData = callback => {
+        return callback;
+      };
+
+      //execute from here
+
+      //get element whose id is displayArea
+      const area = document.getElementById("displayArea");
+
+      //create title element and show it on browser
+      const title = document.createElement("div");
+      title.id = "displayTitle";
+      title.textContent = displayTitle();
+      area.appendChild(title);
+
+      //create photo element and show it on browser
+      //it takes 3 seconds until it finish
+      const img = document.createElement("img");
+      img.id = "displayPhoto";
+      img.src = getData().img;
+      img.alt = "sushi";
+      area.appendChild(img);
+
+      //create description element and show it on browser
+      const description = document.createElement("div");
+      description.id = "displayData";
+      description.textContent = displayData(getData().description);
+      area.appendChild(description);
+    </script>
+  </body>
+</html>
